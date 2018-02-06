@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:json="http://www.mulesoft.org/schema/mule/json" 
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:mock="http://www.mulesoft.org/schema/mule/mock"
+	xmlns="http://www.mulesoft.org/schema/mule/core" 
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" 
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:core="http://www.mulesoft.org/schema/mule/core" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mock http://www.mulesoft.org/schema/mule/mock/current/mule-mock.xsd
+http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+
+	<munit:config
+		mock-connectors="false"
+		mock-inbounds="false"
+		doc:name="MUnit configuration"/>
+    	
+    <spring:beans>
+        <spring:import resource="classpath:books.xml"/>
+        <spring:import resource="classpath:library-api.xml"/>
+        <spring:import resource="classpath:students.xml"/>
+        <spring:import resource="classpath:loans.xml"/>
+    </spring:beans>
+    
+    <http:request-config 
+    	name="HTTP_Request_Configuration" 
+    	host="localhost" 
+    	port="${http.port}" 
+    	basePath="/api" 
+    	doc:name="HTTP Request Configuration"/>
+    
+    <sub-flow name="mock-scripts">
+		<scripting:component doc:name="insert book response">
+			<scripting:script
+				engine="Groovy"
+				name="insert-book-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("GENERATED_KEY", 1);
+list.add(first);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="select books response">
+			<scripting:script
+				engine="Groovy"
+				name="select-books-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+org.mule.util.CaseInsensitiveHashMap<String, Object> second = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("title", "a");
+first.put("category", "a");
+first.put("isbn", "a");
+first.put("publisher", "a");
+first.put("author", "a");
+
+second.put("id", 2);
+second.put("title", "a");
+second.put("category", "a");
+second.put("isbn", "a");
+second.put("publisher", "a");
+second.put("author", "a");
+
+list.add(first);
+list.add(second);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="select book response">
+			<scripting:script
+				engine="Groovy"
+				name="select-book-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("title", "a");
+first.put("category", "a");
+first.put("isbn", "a");
+first.put("publisher", "a");
+first.put("author", "a");
+
+list.add(first);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="insert student response">
+			<scripting:script
+				engine="Groovy"
+				name="insert-student-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("GENERATED_KEY", 1);
+list.add(first);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="select students response">
+			<scripting:script
+				engine="Groovy"
+				name="select-students-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+org.mule.util.CaseInsensitiveHashMap<String, Object> second = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("name", "a");
+first.put("registration", "a");
+first.put("phone", "a");
+first.put("email", "a");
+
+second.put("id", 2);
+first.put("name", "a");
+first.put("registration", "a");
+first.put("phone", "a");
+first.put("email", "a");
+
+list.add(first);
+list.add(second);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="select student response">
+			<scripting:script
+				engine="Groovy"
+				name="select-student-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("name", "a");
+first.put("registration", "a");
+first.put("phone", "a");
+first.put("email", "a");
+
+list.add(first);
+
+return list;]]></scripting:script>
+		</scripting:component>
+		<scripting:component doc:name="insert loan response">
+			<scripting:script
+				engine="Groovy"
+				name="insert-loan-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("GENERATED_KEY", 1);
+list.add(first);
+
+return list;]]></scripting:script>
+		</scripting:component>
+        <scripting:component doc:name="select loans response">
+            			<scripting:script
+				engine="Groovy"
+				name="select-loans-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+org.mule.util.CaseInsensitiveHashMap<String, Object> second = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("isbn", "978-1-56619-909-4");
+first.put("loanDate", "2018-01-09");
+first.put("returnDate", "2018-01-19");
+first.put("effectiveReturnDate", "2018-01-17");
+first.put("lateReturn", 0);
+
+second.put("id", 2);
+second.put("isbn", "978-0-12345-100-7");
+second.put("loanDate", "2017-12-15");
+second.put("returnDate", "2017-12-25");
+second.put("effectiveReturnDate", "2017-12-28");
+second.put("lateReturn", 1);
+
+list.add(first);
+list.add(second);
+
+return list;]]></scripting:script>
+        </scripting:component>
+        <scripting:component doc:name="select loan response">
+            			<scripting:script
+				engine="Groovy"
+				name="select-loan-response"><![CDATA[LinkedList<org.mule.util.CaseInsensitiveHashMap> list = new LinkedList();
+org.mule.util.CaseInsensitiveHashMap<String, Object> first = new org.mule.util.CaseInsensitiveHashMap();
+
+first.put("id", 1);
+first.put("isbn", "978-1-56619-909-4");
+first.put("loanDate", "2018-01-09");
+first.put("returnDate", "2018-01-19");
+first.put("effectiveReturnDate", "2018-01-17");
+first.put("lateReturn", 0);
+
+list.add(first);
+
+return list;]]></scripting:script>
+        </scripting:component>
+    </sub-flow>
+    
+    <munit:test name="library-api-tests-get:/books:library-api-configTest" description="Test" >
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Listagem de Livros">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listagem de Livros']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-books-response')]"/>
+        </mock:when>
+        <http:request config-ref="HTTP_Request_Configuration" path="/books" method="GET" doc:name="HTTP"/>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+        <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+    </munit:test>
+    
+    <munit:test name="library-api-tests-post:/books:application/json:library-api-configTest" description="Test">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Criar Livro">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Criar Livro']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('insert-book-response')]"/>
+        </mock:when>
+    	<set-payload value="#[getResource('examples/book-example.json').asString()]" doc:name="Set POST Payload" mimeType="application/json"/>
+    	<http:request config-ref="HTTP_Request_Configuration" path="/books" method="POST" doc:name="HTTP">
+      		<http:request-builder>
+            	<http:header headerName="Content-Type" value="application/json"/>
+    	    </http:request-builder>
+    	</http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(201))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+    
+    <munit:test name="library-api-tests-get:/books/{bookId}:library-api-configTest" description="Test">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Obter Livro pelo ID">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Obter Livro pelo ID']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-book-response')]"/>
+        </mock:when>
+        <http:request config-ref="HTTP_Request_Configuration" path="/books/{bookId}" method="GET" doc:name="HTTP">
+            <http:request-builder>
+                <http:uri-param paramName="bookId" value="1"/>
+            </http:request-builder>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+        <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+    </munit:test>
+	
+	<munit:test name="library-api-tests-put:/books/{bookId}:application/json:library-api-configTest" description="Test">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Atualizar Livro">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Atualizar Livro']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[[]]"/>
+
+        </mock:when>
+    	<set-payload value="#[getResource('examples/book-put-request-example.json').asString()]" doc:name="Set PUT Payload" mimeType="application/json"/>
+    	<http:request config-ref="HTTP_Request_Configuration" path="/books/{bookId}" method="PUT" doc:name="HTTP">
+      		<http:request-builder>
+                <http:uri-param paramName="bookId" value="1"/>
+                <http:header headerName="Content-Type" value="application/json"/>
+                <http:header headerName="ETag" value="123"/>
+
+    	    </http:request-builder>
+    	</http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(204))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+    
+    <munit:test name="library-api-tests-delete:/books/{bookId}:library-api-configTest" description="Test">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Remover Livro pelo ID">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Remover Livro pelo ID']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[1]"/>
+        </mock:when>
+    	<http:request config-ref="HTTP_Request_Configuration" path="/books/{bookId}" method="DELETE" doc:name="HTTP">
+      		<http:request-builder>
+                <http:uri-param paramName="bookId" value="1"/>
+                <http:header headerName="Content-Type" value="application/json"/>
+
+    	    </http:request-builder>
+    	</http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(204))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+	
+	<munit:test name="library-api-tests-get:/students:library-api-configTest" description="Test" >
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Listagem de Estudantes">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listagem de Estudantes']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-students-response')]"/>
+
+	    </mock:when>
+	    <http:request config-ref="HTTP_Request_Configuration" path="/students" method="GET" doc:name="HTTP"/>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+	    <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+	</munit:test>
+
+	<munit:test name="library-api-tests-post:/students:application/json:library-api-configTest" description="Test">
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Criar Estudante">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Criar Estudante']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('insert-student-response')]"/>
+
+	    </mock:when>
+		<set-payload value="#[getResource('examples/student-example.json').asString()]" doc:name="Set POST Payload" mimeType="application/json"/>
+		<http:request config-ref="HTTP_Request_Configuration" path="/students" method="POST" doc:name="HTTP">
+		    <http:request-builder>
+                <http:header headerName="Content-Type" value="application/json"/>
+                <http:header headerName="X-Authentication" value="123"/>
+
+		    </http:request-builder>
+		</http:request>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(201))]" doc:name="Assert HTTP Status Code"/>
+	</munit:test>
+
+	<munit:test name="library-api-tests-get:/students/{studentId}:library-api-configTest" description="Test">
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Obter Estudante pelo ID">
+	        <mock:with-attributes>
+	            <mock:with-attribute name="doc:name" whereValue="#['Obter Estudante pelo ID']"/>
+	        </mock:with-attributes>
+	        <mock:then-return payload="#[resultOfScript('select-student-response')]"/>
+	    </mock:when>
+	    <http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}" method="GET" doc:name="HTTP">
+	        <http:request-builder>
+	            <http:uri-param paramName="studentId" value="1"/>
+	        </http:request-builder>
+	    </http:request>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+	    <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+	</munit:test>
+
+	<munit:test name="library-api-tests-put:/students/{studentId}:application/json:library-api-configTest" description="Test">
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Atualiza Estudante">
+	        <mock:with-attributes>
+	            <mock:with-attribute name="doc:name" whereValue="#['Atualizar Estudante']"/>
+	        </mock:with-attributes>
+	        <mock:then-return payload="#[[]]"/>
+	    </mock:when>
+	  <set-payload value="#[getResource('examples/student-put-request-example.json').asString()]" doc:name="Set PUT Payload" mimeType="application/json"/>
+	  <http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}" method="PUT" doc:name="HTTP">
+	      <http:request-builder>
+	            <http:uri-param paramName="studentId" value="1"/>
+	            <http:header headerName="Content-Type" value="application/json"/>
+	            <http:header headerName="ETag" value="123"/>
+	
+	      </http:request-builder>
+	  </http:request>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(204))]" doc:name="Assert HTTP Status Code"/>
+	</munit:test>
+
+	<munit:test name="library-api-tests-delete:/students/{studentId}:library-api-configTest" description="Test">
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Remover Estudante pelo ID">
+	        <mock:with-attributes>
+	            <mock:with-attribute name="doc:name" whereValue="#['Remover Estudante pelo ID']"/>
+	        </mock:with-attributes>
+	        <mock:then-return payload="#[1]"/>
+	    </mock:when>
+	  	<http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}" method="DELETE" doc:name="HTTP">
+	      	<http:request-builder>
+                <http:uri-param paramName="studentId" value="1"/>
+                <http:header headerName="Content-Type" value="application/json"/>
+                <http:header headerName="X-Authentication" value="123"/>
+
+	      </http:request-builder>
+		</http:request>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(204))]" doc:name="Assert HTTP Status Code"/>
+	</munit:test>
+
+    <munit:test name="library-api-tests-get:/students/{studentId}/loans:library-api-configTest" description="Test">
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Listar Emprestimos">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listar Emprestimos']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-loans-response')]"/>
+
+        </mock:when>
+
+	    <http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}/loans" method="GET" doc:name="HTTP">
+	        <http:request-builder>
+                <http:uri-param paramName="studentId" value="1"/>
+
+	        </http:request-builder>
+
+	    </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+        <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+    </munit:test>
+
+    <munit:test name="library-api-tests-post:/students/{studentId}/loans:application/json:library-api-configTest" description="Test">
+	    <mock:when messageProcessor=".*:.*" doc:name="Mock Criar Emprestimo">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Criar Emprestimo']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('insert-loan-response')]"/>
+
+
+	    </mock:when>
+		<set-payload value="#[getResource('examples/loan-post.json').asString()]" doc:name="Set POST Payload" mimeType="application/json"/>
+		<http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}/loans" method="POST" doc:name="HTTP">
+		    <http:request-builder>
+                <http:header headerName="Content-Type" value="application/json"/>
+                <http:header headerName="X-Authentication" value="123"/>
+		    </http:request-builder>
+		</http:request>
+	    <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(201))]" doc:name="Assert HTTP Status Code"/>
+	</munit:test>
+    
+    <munit:test name="library-api-tests-get:/students/{studentId}/loans/{loanId}:library-api-configTest" description="Test">
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Obter Empréstimo de Livro pelo ID">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Obter Empréstimo de Livro pelo ID']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-loan-response')]"/>
+
+        </mock:when>
+
+	    <http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}/loans/{loanId}" method="GET" doc:name="HTTP">
+	        <http:request-builder>
+                <http:uri-param paramName="studentId" value="1"/>
+                <http:uri-param paramName="loanId" value="1"/>
+
+	        </http:request-builder>
+
+	    </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+        <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+    </munit:test>
+
+    <munit:test name="library-api-tests-put:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest" description="Test">
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Atualiza Informação do Empréstimo do Livro">
+       		<mock:with-attributes>
+           		<mock:with-attribute name="doc:name" whereValue="#['Atualiza Informação do Empréstimo do Livro']"/>
+       		</mock:with-attributes>
+			<mock:then-return payload="#[[]]"/>
+		</mock:when>
+		<set-payload value="#[getResource('examples/loan-put-request-example.json').asString()]" doc:name="Set PUT Payload" mimeType="application/json"/>
+		<http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}/loans/{loanId}" method="PUT" doc:name="HTTP">
+     		<http:request-builder>
+				<http:uri-param paramName="studentId" value="1"/>
+   				<http:uri-param paramName="loanId" value="1"/>
+				<http:header headerName="Content-Type" value="application/json"/>
+				<http:header headerName="ETag" value="123"/>
+			</http:request-builder>
+		</http:request>
+		<munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(204))]" doc:name="Assert HTTP Status Code"/>
+	</munit:test>
+
+    <munit:test name="library-api-tests-patch:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest" description="Test" >
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Registra Data Real de Devolução">
+       		<mock:with-attributes>
+           		<mock:with-attribute name="doc:name" whereValue="#['Registra Data Real de Devolução']"/>
+       		</mock:with-attributes>
+			<mock:then-return payload="#[[]]"/>
+		</mock:when>
+		<mock:when messageProcessor=".*:.*" doc:name="Mock Obtém Status de Atraso de Devolução">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Obtém Status de Atraso de Devolução']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[resultOfScript('select-loan-response')]"/>
+        </mock:when>
+        <set-payload value="#[getResource('examples/loan-patch-request-example.json').asString()]" mimeType="application/json" doc:name="Set PATCH Payload"/>
+   		<http:request config-ref="HTTP_Request_Configuration" path="/students/{studentId}/loans/{loanId}" method="PATCH" doc:name="HTTP">
+     		<http:request-builder>
+				<http:uri-param paramName="studentId" value="1"/>
+   				<http:uri-param paramName="loanId" value="1"/>
+				<http:header headerName="Content-Type" value="application/json"/>
+				<http:header headerName="ETag" value="123"/>
+			</http:request-builder>
+		</http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="Assert HTTP Status Code"/>
+        <munit:assert-not-null message="The Payload is NULL" doc:name="Assert Not Null Payload"/>
+    </munit:test>
+	
+	<munit:test name="library-api-tests-406-not-acceptable" description="MUnit Test">
+        <mock:throw-an exception-ref="#[new org.mule.module.apikit.exception.NotAcceptableException()]" whenCalling=".*:.*" doc:name="Throw an Exception">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listagem de Livros']"/>
+            </mock:with-attributes>
+
+        </mock:throw-an>
+        <http:request config-ref="HTTP_Request_Configuration" path="/books" method="GET" doc:name="HTTP">
+            <http:success-status-code-validator values="406"/>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(406))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+
+	<munit:test name="library-api-tests-415-unsupported-media-type" description="MUnit Test">
+        <mock:throw-an exception-ref="#[new org.mule.module.apikit.exception.UnsupportedMediaTypeException()]" whenCalling=".*:.*" doc:name="Throw an Exception">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listagem de Livros']"/>
+            </mock:with-attributes>
+        </mock:throw-an>
+        <http:request config-ref="HTTP_Request_Configuration" path="/books" method="GET" doc:name="HTTP">
+            <http:success-status-code-validator values="415"/>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(415))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+
+	<munit:test name="library-api-tests-409-conflict" description="MUnit Test">
+        <mock:throw-an exception-ref="#[new java.sql.SQLIntegrityConstraintViolationException()]" whenCalling=".*:.*" doc:name="Throw an Exception">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Listagem de Livros']"/>
+            </mock:with-attributes>
+        </mock:throw-an>
+        <http:request config-ref="HTTP_Request_Configuration" path="/books" method="GET" doc:name="HTTP">
+            <http:success-status-code-validator values="409"/>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(409))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+
+	<munit:test name="library-api-tests-404-not-found" description="MUnit Test">
+        <http:request config-ref="HTTP_Request_Configuration" path="/not-found" method="GET" doc:name="HTTP">
+            <http:success-status-code-validator values="404"/>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(404))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+
+	<munit:test name="library-api-tests-405-method-not-allowed" description="MUnit Test">
+        <http:request config-ref="HTTP_Request_Configuration" path="/books" method="PATCH" doc:name="HTTP">
+            <http:success-status-code-validator values="405"/>
+        </http:request>
+        <munit:assert-true message="The HTTP Status Code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(405))]" doc:name="Assert HTTP Status Code"/>
+    </munit:test>
+
+</mule>

@@ -1,0 +1,85 @@
+<testsuite name="library-api-tests" time="6.629" failures="0" errors="0" skipped="0" tests="20">
+  <properties>
+    <property key="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property key="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property key="java.vm.version" value="25.151-b12"/>
+    <property key="user.country.format" value="BR"/>
+    <property key="maven.multiModuleProjectDirectory" value="/home/sciensa/Downloads/mule-standalone-3.9.0/apps/library-mule"/>
+    <property key="java.vm.vendor" value="Oracle Corporation"/>
+    <property key="java.vendor.url" value="http://java.oracle.com/"/>
+    <property key="guice.disable.misplaced.annotation.check" value="true"/>
+    <property key="path.separator" value=":"/>
+    <property key="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property key="file.encoding.pkg" value="sun.io"/>
+    <property key="user.country" value="US"/>
+    <property key="sun.java.launcher" value="SUN_STANDARD"/>
+    <property key="sun.os.patch.level" value="unknown"/>
+    <property key="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property key="user.dir" value="/home/sciensa/Downloads/mule-standalone-3.9.0/apps/library-mule"/>
+    <property key="java.runtime.version" value="1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12"/>
+    <property key="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property key="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property key="os.arch" value="amd64"/>
+    <property key="java.io.tmpdir" value="/tmp"/>
+    <property key="line.separator" value="&#xa;"/>
+    <property key="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property key="os.name" value="Linux"/>
+    <property key="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property key="sun.jnu.encoding" value="UTF-8"/>
+    <property key="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property key="java.specification.name" value="Java Platform API Specification"/>
+    <property key="java.class.version" value="52.0"/>
+    <property key="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property key="os.version" value="4.13.0-32-generic"/>
+    <property key="user.home" value="/home/sciensa"/>
+    <property key="user.timezone" value="America/Sao_Paulo"/>
+    <property key="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property key="file.encoding" value="UTF-8"/>
+    <property key="java.specification.version" value="1.8"/>
+    <property key="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property key="user.name" value="sciensa"/>
+    <property key="java.vm.specification.version" value="1.8"/>
+    <property key="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean package"/>
+    <property key="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property key="sun.arch.data.model" value="64"/>
+    <property key="user.language" value="en"/>
+    <property key="java.specification.vendor" value="Oracle Corporation"/>
+    <property key="user.language.format" value="pt"/>
+    <property key="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property key="java.vm.info" value="mixed mode"/>
+    <property key="java.version" value="1.8.0_151"/>
+    <property key="securerandom.source" value="file:/dev/./urandom"/>
+    <property key="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property key="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property key="java.vendor" value="Oracle Corporation"/>
+    <property key="maven.home" value="/usr/share/maven"/>
+    <property key="file.separator" value="/"/>
+    <property key="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property key="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property key="sun.cpu.endian" value="little"/>
+    <property key="sun.desktop" value="gnome"/>
+    <property key="sun.cpu.isalist" value=""/>
+    <property key="mule.testingMode" value="true"/>
+    <property key="mule.working.dir" value="/home/sciensa/Downloads/mule-standalone-3.9.0/apps/library-mule/target/.mule"/>
+  </properties>
+  <testcase time="0.08" name="library-api-tests-get:/students:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.061" name="library-api-tests-409-conflict" classname="library-api-tests"/>
+  <testcase time="0.089" name="library-api-tests-406-not-acceptable" classname="library-api-tests"/>
+  <testcase time="0.075" name="library-api-tests-patch:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.078" name="library-api-tests-get:/students/{studentId}:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.03" name="library-api-tests-415-unsupported-media-type" classname="library-api-tests"/>
+  <testcase time="0.025" name="library-api-tests-405-method-not-allowed" classname="library-api-tests"/>
+  <testcase time="0.114" name="library-api-tests-post:/books:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.102" name="library-api-tests-post:/students/{studentId}/loans:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.062" name="library-api-tests-put:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="1.675" name="library-api-tests-get:/books:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.03" name="library-api-tests-delete:/students/{studentId}:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.068" name="library-api-tests-post:/students:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.074" name="library-api-tests-get:/students/{studentId}/loans:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.029" name="library-api-tests-404-not-found" classname="library-api-tests"/>
+  <testcase time="0.098" name="library-api-tests-get:/books/{bookId}:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.05" name="library-api-tests-put:/books/{bookId}:application/json:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.057" name="library-api-tests-get:/students/{studentId}/loans/{loanId}:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.034" name="library-api-tests-delete:/books/{bookId}:library-api-configTest" classname="library-api-tests"/>
+  <testcase time="0.037" name="library-api-tests-put:/students/{studentId}:application/json:library-api-configTest" classname="library-api-tests"/>
+</testsuite>

@@ -1,0 +1,5 @@
+{
+  "code" : 1001,
+  "message" : "Ocorreu um erro no servidor",
+  "description" : "Aqui vão os detalhes do erro"
+}

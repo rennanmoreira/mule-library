@@ -1,0 +1,24 @@
+SUCCESS - Test library-api-tests-get:/students:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-409-conflict finished Successfully.
+SUCCESS - Test library-api-tests-406-not-acceptable finished Successfully.
+SUCCESS - Test library-api-tests-patch:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-get:/students/{studentId}:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-415-unsupported-media-type finished Successfully.
+SUCCESS - Test library-api-tests-405-method-not-allowed finished Successfully.
+SUCCESS - Test library-api-tests-post:/books:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-post:/students/{studentId}/loans:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-put:/students/{studentId}/loans/{loanId}:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-get:/books:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-delete:/students/{studentId}:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-post:/students:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-get:/students/{studentId}/loans:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-404-not-found finished Successfully.
+SUCCESS - Test library-api-tests-get:/books/{bookId}:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-put:/books/{bookId}:application/json:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-get:/students/{studentId}/loans/{loanId}:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-delete:/books/{bookId}:library-api-configTest finished Successfully.
+SUCCESS - Test library-api-tests-put:/students/{studentId}:application/json:library-api-configTest finished Successfully.
+
+==============================================================================
+Tests run: 20 - Failures: 0 - Errors: 0 - Skipped: 0 - Time elapsed: 6,629 sec
+==============================================================================

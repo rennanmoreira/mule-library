@@ -1,0 +1,83 @@
+#%RAML 1.0 Library
+usage:
+
+traits: 
+  contentCacheable:
+    headers: 
+      If-None-Match?:
+        description: O valor de ETag que foi retornado em chamada anterior
+        type: string
+        example: 25c52f82
+    responses:
+      200:
+        description: O recurso foi alterado desde a última requisição
+        headers: 
+          ETag:
+            type: string
+            example: 25c52f82
+          Cache-Control:
+            type: string
+            example: max-age=3600000
+      304:
+        description: O recurso não foi alterado
+        headers: 
+          ETag:
+            type: string
+            example: 25c52f82
+          Cache-Control:
+            type: string
+            example: max-age=3600000
+
+  paged:
+    description: Realiza a paginação da coleção <<resourcePathName>>
+    queryParameters: 
+      page?: 
+        description: Página corrente
+        type: integer
+        default: 1
+        minimum: 1
+      limit?:
+        description: Número de registros por página
+        type: integer
+        default: 10
+        minimum: 1
+        maximum: 50
+      offset?:
+        description: Posição do registro inicial
+        type: integer
+        default: 1
+        minimum: 1
+        maximum: 500
+
+  filtered:
+    description: Filtra as informações da coleção
+    queryParameters: 
+      <<filterParameter>>?:
+        type: string
+        description: <<filterDescription>>
+
+  requiresAuthentication:
+    description: Este recurso requer o cabeçalho de autenticação. Apenas a secretaria da universidade tem permissão de execução.
+    headers: 
+      X-Authentication:
+        description: O token de autenticação
+        type: string
+        example: "16f94bb1-d843-49d4-9254-c8147dd17997"
+    responses: 
+      401:
+        body: 
+          application/json:
+            example: !include ../examples/error-401.json
+
+  orderable:
+    description: Ordena o resultado da coleção
+    queryParameters: 
+      sort?:
+        description: O campo da coleção a ser ordenado
+        type: string
+        example: <<sortExample>>
+      sortDirection?:
+        description: Ordena pelo parâmetro sort de forma ascendente ou descendente
+        enum: 
+          - asc
+          - desc

@@ -1,0 +1,90 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/eb536a72-c2a6-442f-852d-f7e153c56fe4 # 
+title: Library API
+description: Esta é a API de controle de biblioteca da universidade
+
+uses:
+  library: types/library-types.raml
+  resourceType: resourceTypes/resource-types.raml
+  trait: traits/traits.raml
+
+documentation: 
+  - title: Home
+    content: !include documentation/home.md
+  - title: Books
+    content: !include documentation/books.md
+  - title: Students
+    content: !include documentation/students.md
+  - title: Loans
+    content: !include documentation/loans.md
+
+/books:
+  type: 
+    resourceType.collection:
+      collectionType: library.Books
+      memberType: library.Book
+      collectionResponseExample: !include examples/books-response.json
+      memberPostExample: !include examples/book-example.json
+      locationHeaderExample: "/books/978-1-56619-909-4"
+  get:
+    is: [ { trait.filtered: { filterParameter: title, filterDescription: Procura por um termo parcial no título do livro}}, { trait.orderable: { sortExample: title } }]
+  post:
+
+  /{bookId}:
+    type:
+      resourceType.member:
+        memberType: library.Book
+        memberResponseExample: !include examples/book-example.json
+        putRequestExample: !include examples/book-put-request-example.json
+    description: O livro com o código ISBN identificado por bookId
+    put:
+    delete:
+
+/students:
+  type: 
+    resourceType.collection:
+      collectionType: library.Students
+      memberType: library.Student
+      collectionResponseExample: !include examples/students-response.json
+      memberPostExample: !include examples/student-example.json
+      locationHeaderExample: "/students/AB818445"
+  get:
+    is: [ { trait.filtered: { filterParameter: name, filterDescription: Procura por um termo parcial no nome do aluno}}]
+  post:
+    is: [ trait.requiresAuthentication ]
+
+  /{studentId}:
+    type: 
+      resourceType.member:
+        memberType: library.Student
+        memberResponseExample: !include examples/student-example.json
+        putRequestExample: !include examples/student-put-request-example.json
+    description: O registro de aluno com a matrícula identificada
+    put:
+    delete:
+      is: [ trait.requiresAuthentication ]
+
+    /loans:
+      type:
+        resourceType.collection:
+          collectionType: library.Loans
+          memberType: library.Loan
+          collectionResponseExample: !include examples/loans-response.json
+          memberPostExample: !include examples/loan-post.json
+          locationHeaderExample: "/students/AB818445/loans/c59e9d05-e1a8-41d8-aac2-fe459d23528c"
+      get:
+      post:
+        is: [ trait.requiresAuthentication ]
+
+      /{loanId}:
+        type: 
+          resourceType.member:
+            memberType: library.Loan
+            memberResponseExample: !include examples/loan-response.json
+            putRequestExample: !include examples/loan-put-request-example.json
+            patchRequestExample: !include examples/loan-patch-request-example.json
+            patchResponseExample: !include examples/loan-patch-response-example.json
+        description: O registro de empréstimo identificado pelo id
+        get:
+        put:          
+        patch:

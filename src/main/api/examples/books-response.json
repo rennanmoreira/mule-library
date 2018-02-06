@@ -1,0 +1,19 @@
+{
+  "books": [
+    {
+      "title": "Origem",
+      "publisher": "Horizonte",
+      "author": "Dan Brown",
+      "isbn": "978-1-56619-909-4",
+      "category": "Ficção"
+    },
+    {
+      "title": "Tartarugas até lá embaixo",
+      "publisher": "Intriseca",
+      "author": "John Green",
+      "isbn": "978-0-12345-647-2",
+      "category": "Ficção"
+    }
+  ]
+
+}

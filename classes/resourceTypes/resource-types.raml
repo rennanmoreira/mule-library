@@ -1,0 +1,181 @@
+#%RAML 1.0 Library
+usage:
+
+uses:
+  library: ../types/library-types.raml
+  trait: ../traits/traits.raml
+
+resourceTypes: 
+  collection:
+    get?:
+      is: [ trait.contentCacheable, trait.paged ]
+      description: Retorna a coleção de <<resourcePathName | !uppercamelcase>>
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: <<collectionType>>
+              example: <<collectionResponseExample>>
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json
+
+    post?:
+      description: Cria um registro de <<resourcePathName | !uppercamelcase>>
+      body:
+        application/json:
+          type: <<memberType>>
+          example: <<memberPostExample>>
+      responses: 
+        201:
+          headers: 
+            Location:
+              type: string
+              example: <<locationHeaderExample>>
+        400:
+          description: A requisição é inválida
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-400.json
+        409:
+          description: Um registro já existe com o mesmo identificador 
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-409.json
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json
+
+  member:
+    get:
+      is: [ trait.contentCacheable ]
+      description: Retorna o objeto <<resourcePathName | !uppercamelcase>>
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<memberType>>
+              example: <<memberResponseExample>>
+        404:
+          description: O recurso com este identificador não foi encontrado
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-404.json
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json
+
+    put?:
+      description: Atualiza o recurso <<resourcePathName | !uppercamelcase>>
+      headers:
+        ETag:
+          type: string
+          example: "f595cb9a"
+      body: 
+        application/json:
+          type: <<memberType>>
+          example: <<putRequestExample>>
+      responses: 
+        204:
+          description: Atualiza o recurso e retorna o novo ETag gerado pelo sistema
+          headers: 
+            ETag:
+              type: string
+              example: "38cfaa09"
+        400:
+          description: A requisição é inválida
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-400.json
+        404:
+          description: O recurso com este identificador não foi encontrado
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-404.json
+        409:
+          description: Caso o ETag enviado na atualização não seja igual ao estado em que o objeto se encontra
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-409.json
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json
+    patch?:
+      description: Atualiza parcialmente o registro <<resourcePathName | !uppercamelcase>>
+      headers:
+        ETag:
+          type: string
+          example: "f595cb9a"
+      body: 
+        application/json:
+          type: <<memberType>>
+          example: <<patchRequestExample>>
+      responses: 
+        200:
+          description: Retorna os campos que foram modificados como consequência da atualização parcial
+          headers: 
+            ETag:
+              type: string
+              example: "38cfaa09"
+          body: 
+            application/json:
+              example: <<patchResponseExample>>
+        400:
+          description: A requisição é inválida
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-400.json
+        404:
+          description: O recurso com este identificador não foi encontrado
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-404.json
+        409:
+          description: Caso o ETag enviado na atualização não seja igual ao estado em que o objeto se encontra
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-409.json
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json
+    delete?:
+      description: Excluir o registro <<resourcePathName | !uppercamelcase>>
+      responses: 
+        204:
+          description: Caso o registro seja excluído com sucesso
+        404:
+          description: Caso o registro não seja encontrado
+          body:
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-404.json
+        500:
+          description: Erro interno do servidor
+          body: 
+            application/json:
+              type: library.Error
+              example: !include ../examples/error-500.json

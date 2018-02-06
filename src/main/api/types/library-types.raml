@@ -1,0 +1,85 @@
+#%RAML 1.0 Library
+usage:
+
+types: 
+  Error:
+    properties: 
+      code:
+        type: integer
+        description: Código do erro
+      message:
+        type: string
+        description: Mensagem breve do erro
+      description:
+        type: string
+        description: Descrição detalhada do erro
+
+  Student:
+    properties: 
+      name?:
+        type: string
+        description: O nome completo do aluno
+      registration?:
+        type: string
+        description: A matrícula do aluno
+      phone?:
+        type: string
+        description: O telefone do aluno
+      email?:
+        type: string
+        description: O email do aluno
+  Students:
+    properties: 
+      students:
+        type: Student[]
+        description: A coleção de alunos
+
+  Book:
+    properties: 
+      title?:
+        type: string
+        description: O título do livro
+      publisher?:
+        type: string
+        description: A editora do livro
+      author?:
+        type: string
+        description: O autor do livro
+      isbn?:
+        type: string
+        description: O código ISBN do livro
+        pattern: ^\d{3}-\d-\d{3,5}-\d{3}-\d
+      category?:
+        type: string
+        description: A categoria do livro
+  Books:
+    properties: 
+      books: 
+        type: Book[]
+        description: A coleção de livros
+
+  Loan:
+    properties:
+      studentRegistration?:
+        type: string
+        description: A matrícula do aluno
+      isbn?:
+        type: string
+        description: O código ISBN do livro
+      loanDate?:
+        type: date-only
+        description: A data de empréstimo
+      returnDate?:
+        type: date-only
+        description: A data prevista de devolução do livro
+      effectiveReturnDate?:
+        type: date-only
+        description: A data real de devolução do livro
+      lateReturn?:
+        type: boolean
+        description: Indicador se o livro foi entregue com atraso neste empréstimo
+  Loans:
+    properties: 
+      loans: 
+        type: Loan[]
+        description: A coleção de empréstimos
