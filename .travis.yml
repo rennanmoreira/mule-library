@@ -1,0 +1,12 @@
+# Travis CI Configuration file
+# @link https://travis-ci.org/
+
+# Using Java for the project
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  # Unit and integration tests are run
+  - mvn install 
+  - mvn test
