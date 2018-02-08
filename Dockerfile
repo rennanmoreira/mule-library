@@ -5,4 +5,4 @@ FROM ivankrizsan/mule-docker:3.9.0
 WORKDIR /opt/mule-standalone/
 
 #Copiar a aplicação localizada no host para o repositório de aplicações do container.
-COPY mule-library/ apps/mule-library/
+COPY . apps/mule-library/
