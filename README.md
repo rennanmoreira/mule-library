@@ -5,6 +5,7 @@ Objetivos do projeto:
  - Automatizar o trigger de build via WebHook no repositório do Github
  - Fazer o build da imagem no Dockerhub
 
+O projeto foi concluído com sucesso!
 
 
 
