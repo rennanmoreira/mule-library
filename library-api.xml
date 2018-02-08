@@ -41,7 +41,7 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
     	database="${mysql.database}" 
     	doc:name="MySQL Configuration"/>
     	
-    <context:property-placeholder location="commons.properties, dev.properties"/>
+    <context:property-placeholder location="commons.properties, ${mule.env}.properties"/>
 
     
     <flow name="library-api-main">
