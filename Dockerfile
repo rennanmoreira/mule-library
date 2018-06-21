@@ -7,6 +7,9 @@ WORKDIR /opt/mule-standalone/
 #Copiar a aplicação localizada no host para o repositório de aplicações do container.
 COPY . apps/mule-library/
 
+#Copiar a aplicação localizada no host para o repositório de aplicações do container.
+COPY . apps/mule-library/
+
 #Agora vamos instalar o JAVA e o MAVEN para executar os testes unitários.
 RUN    apt-get update                               &&\
        apt-get install -y openjdk-8-jre             &&\
